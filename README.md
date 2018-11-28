@@ -2,7 +2,7 @@
 
 Term: Fall 2018
 
-+ Team #
++ Team #2
 + Projec title: Lorem ipsum dolor sit amet
 + Team members
 	+ Anke Xu
