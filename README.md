@@ -3,7 +3,7 @@
 Term: Fall 2018
 
 + Team #2
-+ Projec title: Lorem ipsum dolor sit amet
++ Projec title: How to predict tomorrow's stock price?
 + Team members
 	+ Anke Xu
 	+ Chuqiao Rong
