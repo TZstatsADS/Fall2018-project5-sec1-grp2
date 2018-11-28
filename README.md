@@ -1,4 +1,4 @@
-# ADS Project 5: 
+# ADS Project 5: How to predict tomorrow's stock price?
 
 Term: Fall 2018
 
