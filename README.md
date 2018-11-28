@@ -11,7 +11,7 @@ Term: Fall 2018
 	+ Yiqiao Yin
 	+ The designated presenter is Yiqiao Yin.
 
-+ Project summary: What is tomorrow's stock price? Under big data era, what searching technique can we use to grasp the useful information so that we can minimize our prediction error predicting a regression problem? This project we provide a novel analysis 
++ Project summary: What is tomorrow's stock price? Under big data era, what searching technique can we use to grasp the useful information so that we can minimize our prediction error predicting a regression problem? This project studies price actions in capital market as a random walk from limit theorems. Through clear construction, we derive algorithms from a series of theorems to create standardized buy signals given a trader's committed frequency to participate in the market. Using such processed data, we can use influence measure, I-score, to select robust stock clusters to construct portfolio. Simulation result shows under the same risk profile a $1,000 initial investment returns \$5,000 while the same time S\&P500 returns less than $1,500. Empirical evidence show results of on average 97% error reduction.
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
