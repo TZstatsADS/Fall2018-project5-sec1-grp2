@@ -1,4 +1,5 @@
 # ADS Project 5: How to predict tomorrow's stock price?
+![image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/figs/mainpage-technical-sample.png)
 
 Term: Fall 2018
 
