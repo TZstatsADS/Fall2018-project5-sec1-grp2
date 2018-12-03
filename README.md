@@ -25,7 +25,11 @@ The following graph is taken from Hsu (2014) and it presents an illustration to 
 
 **Shiny App** We also build a platform using Shiny App and this app should serve as supplement in addition to the paper and presentation. Due to slow speed from Shiny server when executing code to download data lively, we will present limited information from Shiny App. The app can be accessed [here](https://y-yin.shinyapps.io/CENTRAL-INTELLIGENCE-PLATFORM-BETA/).
 	
-**Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
+**Contribution statement**:
+Group Leader: Yiqiao Yin
+
+Other team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement.
+
 
 **Acknowledgement**: This project provide fair and robust analysis in predicting security prices. However, money management is more of art than science. We have not disclosed related strategy in game planning when it comes to risk management. Hence, this project does not serve as investment advise and nor are we responsible for any monetary losses from investment decisions by any audience. The risk of money management subject to your investment is solely your responsibility. 
 
