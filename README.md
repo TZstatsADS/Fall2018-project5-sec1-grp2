@@ -22,6 +22,8 @@ The following graph is taken from Hsu (2014) and it presents an illustration to 
 **Performance and Results** We present a 97% error reduction on average on 30 stocks in Dow Jones 30 Component on held-out test set. Below we present a sample of selected test set resutls for MMM for two comparisons: (1) the first is using time-series ARMA model, and (2) the second is using I-score as feature selection method before we do regression. 
 ![image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/figs/MMM-TS.png)
 ![image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/figs/MMM-Influence.png)
+
+**Shiny App** We also build a platform using Shiny App and this app should serve as supplement in addition to the paper and presentation. Due to slow speed from Shiny server when executing code to download data lively, we will present limited information from Shiny App. The app can be accessed [here](https://y-yin.shinyapps.io/CENTRAL-INTELLIGENCE-PLATFORM-BETA/).
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
