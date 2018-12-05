@@ -17,6 +17,7 @@ Term: Fall 2018
 **Mathematical Model** Lo et al (2002) have introduced a non-parametric statistics that measures the predictivity of a cluster of variables given a data set in discrete framework. After reading dissertation from Huang (2004) and Hsu (2014), we have adopted the extension of their methodology to measure predicitivity in continuous framework. 
 
 The following graph is taken from Hsu (2014) and it presents an illustration to use nearest neighborhood to measure local mean in predictivity score.
+
 ![image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/figs/fig-huang-page-10.PNG)
 
 **Performance and Results** We present a 97% error reduction on average on 30 stocks in Dow Jones 30 Component on held-out test set. Below we present a sample of selected test set resutls for MMM for two comparisons: (1) the first is using time-series ARMA model, and (2) the second is using I-score as feature selection method before we do regression. 
