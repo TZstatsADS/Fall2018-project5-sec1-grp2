@@ -1014,16 +1014,15 @@ rownames(DJI.Prediction.Summary) <- unlist(data.list)
 colnames(DJI.Prediction.Summary) <- c("TS.Error", "Proposed.Method.Error", "Error.Reduction")
 DJI.Prediction.Summary <- data.frame(
   rbind(
-    cbind(rownames(DJI.Prediction.Summary), DJI.Prediction.Summary[,1], rep("TS",30)),
+    cbind(rownames(DJI.Prediction.Summary), round(DJI.Prediction.Summary[,1], 2), rep("TS",30)),
     cbind(rownames(DJI.Prediction.Summary), DJI.Prediction.Summary[,2], rep("Proposed", 30))
   )
 )
-DJI.Prediction.Summary[, 2] <- round(as.numeric(as.character(DJI.Prediction.Summary$MSE)), 2)
 colnames(DJI.Prediction.Summary) <- c("Ticker", "MSE", "Group")
 
 # Plot
 ggplot(data=DJI.Prediction.Summary, aes(x=DJI.Prediction.Summary$Ticker, 
-                                        y=DJI.Prediction.Summary$MSE,
+                                        y=as.numeric(as.character(DJI.Prediction.Summary$MSE)),
                                         fill=Group)) +
   geom_bar(stat="identity", position=position_dodge()) + 
   xlab("Ticker") + 
@@ -1031,13 +1030,15 @@ ggplot(data=DJI.Prediction.Summary, aes(x=DJI.Prediction.Summary$Ticker,
 
 # Barplot
 library(ggplot2)
-df <- melt(DJI.Prediction.Summary[, c(1,2)])
-colnames(df) <- c("Metric", "Methods", "MSE")
+df <- melt(DJI.Prediction.Summary[, c(1,2,3)])
+colnames(df) <- c("Ticker", "MSE", "Methods")
 p <- ggplot(df) +
   geom_boxplot(aes(x=Methods, y = MSE, color = Methods))
 p
 
 # Save
-write.csv(DJI.Prediction.Summary, "C:\Users\eagle\Desktop/Project 5/DIA-Prediction-Summary.csv")
+setwd("C:/Users/eagle/Desktop/Project 5/document")
+save.image(file = "project-source.RData")
+#write.csv(DJI.Prediction.Summary, "C:\Users\eagle\Desktop/Project 5/DIA-Prediction-Summary.csv")
 
 ######################### END OF SCRIPT #########################

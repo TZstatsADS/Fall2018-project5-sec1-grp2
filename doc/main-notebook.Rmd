@@ -1,0 +1,113 @@
+---
+title: "Rubust Portfolio by Influence Measure"
+output: 
+  html_notebook:
+    toc: TRUE
+---
+
+# Background
+
+Security prices follow random walk. Nobel Laureate Eugene Fama and researcher Kenneth French, former professors at the University of Chicago Booth School of Business, attempted to better measure market returns and, through research, found that \underline{value stocks} outperform \underline{growth stocks}. Similarly, \underline{small-cap stocks} tend to outperform \underline{large-cap stocks}.
+
+## Asset Pricing
+
+A five-factor model directed at capturing the \underline{size}, \underline{value}, \underline{profitability}, and \underline{investment} patterns in average stock returns performs better than the three-factor model of Fama and French (1993) \cite{Fama French 1993}. The five-factor model??s main problem is its \underline{failure} to capture the low average returns on small stocks whose returns behave like those of firms that invest a lot despite low profitability.
+$$
+    r = R_f + \beta_1 (R_m - R_f) + \beta_2 \text{SMB} + \beta_3 \text{HML} + \alpha + \epsilon
+$$
+\[
+\begin{array}{lcl}
+    r
+    & = R_f + \beta_1 (R_m - R_f) + \beta_2 \text{SMB} + \beta_3 \text{HML} \\
+    & + \beta_4 \text{Profitability} + \beta_5 \text{Investment} + \alpha + \epsilon \\
+\end{array}\]
+
+Source: \url{https://www.sciencedirect.com/science/article/pii/S0304405X14002323} \\
+Application: \url{https://www.morningstar.com/}
+
+## Motivation
+
+- Before Columbia, I was under Novy-Marx's supervision. My research was submitted to AQR Capital Management led by Fama (Nobel Laureate). After undergraduate school, I worked as a trader on the street (licensed and to manage \$1m AUM). 
+- We know what may explain security returns, but uncertain if they are persistent.
+- Fama and French: not for the purpose of doing predictions.
+- They raised the question: ``is market efficient?'' Despite the fact that scholars cannot agree on the answer to the question, we would go nowhere even if they do. For people who want to trade, they still trade stocks. For people who do not want to trade, they still stay away from the market. 
+- How to digest all these information so that we can provide prediction to investors? (e.g. What is tomorrow's stock price?)
+
+# Mathematical Model
+
+Let us introduce a benchmark model and a proposed model. 
+
+## ARMA
+
+The notation ARMA($p,q$) refers to the model with $p$ autoregressive terms and $q$ moving-average terms. This model contains AR($p$) and MA($q$). The equation follows
+$$
+    X_t = c + \epsilon_t + \sum_{i=1}^p \varphi_i X_{t-i} + \sum_{i=1}^q \theta_i \epsilon_{t-i}
+$$
+where $\epsilon_{t-1}, \epsilon_{t-2}, ..., \epsilon_{t-1}$ are white noise error terms.
+
+- Question (1): Why is additive? \\
+- Question (2): Why shall we use all the data? (e.g. What if some days in the past the data provided is not useful? Here we assume unit of analysis, $t$, is interpreted as ``day'', but it may be expanded to ``week'' and ``month''.)
+
+## Proposed Measure
+
+Chernoff, Lo, and Zheng (2009) proposed the Partition Retention method to detect both marginal and high-order interaction effects based on Lo and Zheng's earlier work Lo and Zheng (2002).
+
+Assume that $\{X_j, j = 1, ..., m\}$ taking values 0 or 1. There are $2^m$ possible partitions for each set of $m$ explanatory variables. 
+Normalized influence score, I-score, as
+$$
+    I = \frac{1}{n\sigma_Y^2} \sum_{k=1}^{2^m} n_k^2 (\hat{Y}_k - \bar{Y})^2,
+$$
+where $\hat{Y}_k$, the estimated value, is the average of the $n_k$ observations on $Y$ falling in the $k^\text{th}$ partition cell, $\hat{Y}$ is the global mean of $Y$ and $\sigma_Y^2$ is the variance of $Y$.
+
+We can expand this thoerem in continuous framework. Related papers are Lo and Zheng (2002), Lo, Chernoff, Zheng, and Lo (2015, 2016). Please also see Huang (2014) and Ding (2008).
+
+Given a data set $\textbf{X}$, for each observation $i$, we can define local mean by the nearest $K$ neighborhood surrounding $X_i$. We can then define global mean as $\bar{Y} = \frac{1}{n} \sum Y_i$. The predictivity of this data set $\textbf{X}$ can be measured by the following equation
+$$
+    I_C = \frac{1}{n} \sum_{i=1}^n \bigg(\frac{1}{K} \sum_{j \in N(i)}^K Y_j - \bar{Y}\bigg)^2
+$$
+
+# Lab Procedure
+
+This figure presents MSE (mean square error) results of held out test set for all 30 components of Dow Jones Index. The bar charts shows MSE for both baseline model (ARMA) and improved model (I-score)
+
+```{r}
+# Load Source
+setwd("C:/Users/eagle/Desktop/Project 5/document")
+load("project-source.RData")
+
+# Table
+# Summary:
+DJI.Prediction.Summary <- cbind(
+  TS.Error, Proposed.Error, Proposed.Error/TS.Error-1)
+rownames(DJI.Prediction.Summary) <- unlist(data.list)
+colnames(DJI.Prediction.Summary) <- c("TS.Error", "Proposed.Method.Error", "Error.Reduction")
+
+# View Table
+library(knitr)
+kable(DJI.Prediction.Summary)
+```
+
+```{r}
+# Setup
+DJI.Prediction.Summary <- data.frame(
+  rbind(
+    cbind(rownames(DJI.Prediction.Summary), round(DJI.Prediction.Summary[,1], 2), rep("TS",30)),
+    cbind(rownames(DJI.Prediction.Summary), DJI.Prediction.Summary[,2], rep("Proposed", 30))
+  )
+)
+colnames(DJI.Prediction.Summary) <- c("Ticker", "MSE", "Group")
+
+# Plot:
+# The following script plots comparison of mean square error (MSE) using proposed method and ARMA model. 
+ggplot(data=DJI.Prediction.Summary, aes(x=DJI.Prediction.Summary$Ticker, 
+                                        y=as.numeric(as.character(DJI.Prediction.Summary$MSE)),
+                                        fill=Group)) +
+  geom_bar(stat="identity", position=position_dodge()) + 
+  xlab("Ticker") + 
+  ylab("Test Set MSE")
+```
+
+# Reference
+
+- Lo, Chernoff, Zheng, Lo (2015), ``Why significant variables aren't automatically good predictors'', \emph{Proceedings of the National Academy of Sciences} 112, 2015, 13892.
+- Lo, Chernoff, Zheng, Lo (2016), ``Framework for making better predictions by directly estimating variables? predictivity'', \emph{Proceedings of the National Academy of Sciences} 113, 2016, 14277.
