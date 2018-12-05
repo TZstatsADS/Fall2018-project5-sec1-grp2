@@ -27,12 +27,15 @@ The following graph is taken from Hsu (2014) and it presents an illustration to 
 **Presentation** Yiqiao Yin is the designated presenter for this presentation. He will mainly be using [Presentation Slides](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/doc/Rubust%20Portfolio%20by%20Influence%20Measure%20-%20Presentation%20%5BYiqiao%20Yin%202018%5D.pdf) for the main material. For detailed reference, we invite our audience to read the paper on the [research site](https://yinscapital.com/research/). The paper is also uploaded to [zip folder](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/doc/Robust%20Portfolio%20by%20Influence%20Measure.zip) in Github folder **doc**.
 
 **Shiny App** We also build a platform using Shiny App and this app should serve as supplement in addition to the paper and presentation. Due to slow speed from Shiny server when executing code to download data lively, we will present limited information from Shiny App. The app can be accessed [here](https://y-yin.shinyapps.io/CENTRAL-INTELLIGENCE-PLATFORM-BETA/).
+
+**R Notebook** In additional to files above, we also provide a R notebook, [image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/doc/main-notebook.Rmd). This R notebook calls **RData** saved in the **doc** folder. Then the script produces the graphs such as the following. The R Notebook is meant to work as one of the many supplements in support of the presentation materials just like R Shiny App above.
+
+![image](https://github.com/TZstatsADS/Fall2018-project5-sec1proj5-grp2/blob/master/figs/fig-dow-jones-30.PNG)
 	
 **Contribution statement**:
 Group Leader: Yiqiao Yin
 
 Other team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement.
-
 
 **Acknowledgement**: This project provide fair and robust analysis in predicting security prices. However, money management is more of art than science. We have not disclosed related strategy in game planning when it comes to risk management. Hence, this project does not serve as investment advise and nor are we responsible for any monetary losses from investment decisions by any audience. The risk of money management subject to your investment is solely your responsibility. 
 
